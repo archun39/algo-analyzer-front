@@ -15,6 +15,7 @@ interface ProblemData {
   output: string;
   timeLimit: string;
   memoryLimit: string;
+  tags: string[];
 }
 
 const Problem = () => {

@@ -15,7 +15,8 @@ export const getProblem = async (problemNumber: number): Promise<ProblemResponse
       input: response.data.input || '',
       output: response.data.output || '',
       timeLimit: response.data.timeLimit || '',
-      memoryLimit: response.data.memoryLimit || ''
+      memoryLimit: response.data.memoryLimit || '',
+      tags: response.data.tags || []
     };
     
     return {

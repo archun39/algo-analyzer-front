@@ -15,17 +15,25 @@ const ProblemCard = ({ problemId, title, description, input, output, timeLimit, 
   return (
     <div className="problem-card">
       <h2>[{problemId}] {title}</h2>
+      <div className="thin-divider"></div>
       <div className="section">
-        <h3>문제</h3>
+        <h3 className="blue-underline">문제</h3>
         <div className="section-content">{description}</div>
       </div>
       <div className="section">
-        <h3>입력</h3>
+        <h3 className="blue-underline">입력</h3>
         <div className="section-content">{input}</div>
       </div>
       <div className="section">
-        <h3>출력</h3>
+        <h3 className="blue-underline">출력</h3>
         <div className="section-content">{output}</div>
+      </div>
+      <div className="section">
+        <h3 className="blue-underline">제한</h3>
+        <div className="section-content">
+          시간 제한: {timeLimit}초<br />
+          메모리 제한: {memoryLimit}MB
+        </div>
       </div>
     </div>
   );

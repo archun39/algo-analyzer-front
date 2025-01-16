@@ -6,6 +6,7 @@ export interface ProblemData {
   output: string;
   timeLimit: string;
   memoryLimit: string;
+  tags: string[];
 }
 
 export interface ProblemResponse {
