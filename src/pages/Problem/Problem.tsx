@@ -10,6 +10,7 @@ const Problem = () => {
       <Header />
       <main>
         <div className="content">
+<<<<<<< Updated upstream
           <ProblemCard
             problemId={0}
             title=""
@@ -24,6 +25,32 @@ const Problem = () => {
             timeComplexity=""
             spaceComplexity=""
           />
+=======
+          {loading ? (
+            <div className="loading">로딩중...</div>
+          ) : error ? (
+            <div className="error">{error}</div>
+          ) : problem ? (
+            <>
+              <ProblemCard
+                problemId={problem.problemId}
+                title={problem.title}
+                description={problem.description}
+                input={problem.input}
+                output={problem.output}
+                timeLimit="2"
+                memoryLimit="128"
+              />
+              <AnalysisCard
+                analysis=""
+                algorithmType=""
+                approach=""
+                timeComplexity=""
+                spaceComplexity=""
+              />
+            </>
+          ) : null}
+>>>>>>> Stashed changes
         </div>
       </main>
       <Footer />
