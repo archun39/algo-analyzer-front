@@ -5,22 +5,12 @@ import ProblemCard from '../../components/problem/ProblemCard/ProblemCard';
 import AnalysisCard from '../../components/analysis/AnalysisCard/AnalysisCard';
 import Footer from '../../components/common/Footer/Footer';
 import { getProblem } from '../../api/problem';
+import { ProblemWithAnalysisResponseDto } from '../../api/problem/types';
 import './Problem.css';
-
-interface ProblemData {
-  problemId: number;
-  title: string;
-  description: string;
-  input: string;
-  output: string;
-  timeLimit: string;
-  memoryLimit: string;
-  tags: string[];
-}
 
 const Problem = () => {
   const { id } = useParams();
-  const [problem, setProblem] = useState<ProblemData | null>(null);
+  const [problemData, setProblemData] = useState<ProblemWithAnalysisResponseDto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>('');
 
@@ -32,7 +22,7 @@ const Problem = () => {
         setLoading(true);
         const response = await getProblem(Number(id));
         if (response.success && response.data) {
-          setProblem(response.data);
+          setProblemData(response.data);
         } else {
           setError('문제 데이터를 불러오는데 실패했습니다.');
         }
@@ -56,24 +46,20 @@ const Problem = () => {
             <div className="loading">로딩중...</div>
           ) : error ? (
             <div className="error">{error}</div>
-          ) : problem ? (
+          ) : problemData ? (
             <>
               <ProblemCard
-                problemId={problem.problemId}
-                title={problem.title}
-                description={problem.description}
-                input={problem.input}
-                output={problem.output}
-                timeLimit={problem.timeLimit}
-                memoryLimit={problem.memoryLimit}
+                problemId={problemData.problemResponse.problemId}
+                title={problemData.problemResponse.title}
+                description={problemData.problemResponse.description}
+                input={problemData.problemResponse.input}
+                output={problemData.problemResponse.output}
+                timeLimit={problemData.problemResponse.timeLimit}
+                memoryLimit={problemData.problemResponse.memoryLimit}
               />
               <AnalysisCard
-                analysis=""
-                algorithmType=""
-                approach=""
-                timeComplexity=""
-                spaceComplexity=""
-              />
+                analysis={problemData.analysisResponse}
+              />  
             </>
           ) : null}
         </div>
